@@ -193,6 +193,8 @@ func! gtfo#open#term(dir, cmd) abort "{{{
       silent call system(s:termpath." ".shellescape(l:dir))
     elseif executable('gnome-terminal')
       silent call system('gnome-terminal --app-id=org.gnome.Terminal --window --working-directory '''. l:dir . '''')
+    elseif executable('urxvt')
+      silent call system('urxvt -cd '.shellescape(l:dir))
     else
       call s:beep('failed to open terminal')
     endif
